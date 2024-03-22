@@ -18,11 +18,21 @@
 const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
+const KEY_LEFT = 37
+const KEY_RIGHT = 39
+const KEY_UP = 38
+const KEY_DOWN = 40
+const LEFTV = 65
+const RIGHTV = 83
+const UPV = 87
+const DOWNV = 90
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
 var health = 100;  // health van speler
 
+var vijandX = 600 // x-positie van vijand
+var vijandY = 600 // y-positie van vijand
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -32,9 +42,31 @@ var health = 100;  // health van speler
  */
 var beweegAlles = function() {
   // speler
-
+  if (keyIsDown(KEY_LEFT)) {
+     spelerX = spelerX -1;
+  }
+  if (keyIsDown(KEY_RIGHT)) {
+    spelerX = spelerX +1;
+  }
+  if (keyIsDown(KEY_UP)) {
+    spelerY = spelerY -1;
+  }
+  if (keyIsDown(KEY_DOWN)) {
+    spelerY = spelerY +1;
+  }
   // vijand
-
+  if (keyIsDown(LEFTV)) {
+     vijandX = vijandX -1;
+  }
+  if (keyIsDown(RIGHTV)) {
+     vijandX = vijandX +1;
+  }
+  if (keyIsDown(UPV)) {
+    vijandY = vijandY - 1;
+  }  
+  if (keyIsDown(DOWNV)) {
+    vijandY = vijandY +1;
+  }
   // kogel
 };
 
@@ -45,7 +77,10 @@ var beweegAlles = function() {
  */
 var verwerkBotsing = function() {
   // botsing speler tegen vijand
-
+  if (spelerX === vijandX && 
+      spelerY - vijandY <50) {
+      console.log("Botsing");
+      }
   // botsing kogel tegen vijand
 
   // update punten en health
@@ -57,16 +92,20 @@ var verwerkBotsing = function() {
  */
 var tekenAlles = function() {
   // achtergrond
-
+  fill("blue")
+  rect(0,0,1280,720);
   // vijand
-
+  fill("red");
+  ellipse(vijandX - 25, vijandY - 25, 50, 50);
+  fill("black")
+  ellipse(vijandX - 25, vijandY - 25, 100, 10);
   // kogel
 
   // speler
-  fill("white");
+  fill("yellow");
   rect(spelerX - 25, spelerY - 25, 50, 50);
-  fill("black");
-  ellipse(spelerX, spelerY, 10, 10);
+  fill("orange");
+  ellipse(spelerX, spelerY, 100, 10);
 
   // punten en health
 
@@ -95,7 +134,7 @@ function setup() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
-  if (spelStatus === SPELEN) {
+ if (spelStatus === SPELEN) {
     beweegAlles();
     verwerkBotsing();
     tekenAlles();
