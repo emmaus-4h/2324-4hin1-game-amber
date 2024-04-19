@@ -32,7 +32,8 @@ const DOWNV = 90
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
-var health = 100;  // health van speler
+var health = 10;  // health van speler
+var punten = 0; // punten van speler
 
 var vijandX = 600 // x-positie van vijand
 var vijandY = 600 // y-positie van vijand
@@ -90,6 +91,8 @@ var verwerkBotsing = function() {
   // botsing kogel tegen vijand
 
   // update punten en health
+     punten = punten + 1;
+  
 
 };
 
@@ -114,7 +117,10 @@ var tekenAlles = function() {
   ellipse(spelerX, spelerY, 100, 10);
 
   // punten en health
-
+  fill("white");
+  textSize(50);
+  text("Punten: " + punten, 10, 50);
+  text("Health: " + health, 10, 100);
 };
 
 /* ********************************************* */
