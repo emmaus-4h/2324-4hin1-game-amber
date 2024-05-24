@@ -91,7 +91,7 @@ var verwerkBotsing = function() {
   // botsing kogel tegen vijand
 
   // update punten en health
-     punten = punten + 1;
+     punten = punten + 0.02;
   
 
 };
@@ -109,46 +109,61 @@ var tekenAlles = function() {
   fill("black")
   ellipse(vijandX - 25, vijandY - 25, 100, 10);
   // atributen1
-  fill("lightgreen");
+  fill("lightgray");
   ellipse(50,50,500,500);
-  fill("darkgreen");
+  fill("darkgray");
   ellipse(60,60,50,50);
-  fill("lightgreen");
+  fill("lightgray");
   ellipse(60,60,40,40);
-  fill("darkgreen");
+  fill("darkgray");
   ellipse(240,100,100,100);
-  fill("lightgreen");
+  fill("lightgray");
   ellipse(240,100,90,90);
-  fill("darkgreen");
+  fill("darkgray");
   ellipse(130,180,30,30);
-  fill("lightgreen");
+  fill("lightgray");
   ellipse(130,180,20,20);
-  fill("darkgreen");
+  fill("darkgray");
   ellipse(5,140,30,30);
-  fill("lightgreen");
+  fill("lightgray");
   ellipse(5,140,20,20);
-  fill("darkgreen");
+  fill("darkgray");
   ellipse(50,250,80,80);
-  fill("lightgreen");
+  fill("lightgray");
   ellipse(50,250,70,70);
-  fill("darkgreen");
+  fill("darkgray");
   ellipse(150,1,40,40);
-  fill("lightgreen");
+  fill("lightgray");
   ellipse(150,1,30,30);
   //atributen2
-  
+  fill("purple");
+  ellipse(1000,500,300,300);
+  fill("lightpink");
+  ellipse(1000,500,300,5);
+  fill("lightpink");
+  ellipse(1000,600,210,5);
+  fill("lightpink");
+  ellipse(1000,400,210,5);
+  fill("lightpink");
+  ellipse(1050,560,110,5);
+  fill("lightpink");
+  ellipse(950,540,110,5);
+  fill("lightpink");
+  ellipse(1050,440,110,5);
+  fill("lightpink");
+  ellipse(950,460,110,5);
   // kogel
 
   // speler
-  fill("yellow");
+  fill("darkorange");
   rect(spelerX - 25, spelerY - 25, 50, 50);
-  fill("orange");
+  fill("white");
   ellipse(spelerX, spelerY, 100, 10);
 
   // punten en health
   fill("white");
   textSize(50);
-  text("Punten: " + punten, 10, 50);
+  text("Time: " + round(punten), 10, 50);
   text("Health: " + health, 10, 100);
 };
 
