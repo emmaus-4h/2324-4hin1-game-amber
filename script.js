@@ -108,6 +108,35 @@ var tekenAlles = function() {
   ellipse(vijandX - 25, vijandY - 25, 50, 50);
   fill("black")
   ellipse(vijandX - 25, vijandY - 25, 100, 10);
+  // atributen1
+  fill("lightgreen");
+  ellipse(50,50,500,500);
+  fill("darkgreen");
+  ellipse(60,60,50,50);
+  fill("lightgreen");
+  ellipse(60,60,40,40);
+  fill("darkgreen");
+  ellipse(240,100,100,100);
+  fill("lightgreen");
+  ellipse(240,100,90,90);
+  fill("darkgreen");
+  ellipse(130,180,30,30);
+  fill("lightgreen");
+  ellipse(130,180,20,20);
+  fill("darkgreen");
+  ellipse(5,140,30,30);
+  fill("lightgreen");
+  ellipse(5,140,20,20);
+  fill("darkgreen");
+  ellipse(50,250,80,80);
+  fill("lightgreen");
+  ellipse(50,250,70,70);
+  fill("darkgreen");
+  ellipse(150,1,40,40);
+  fill("lightgreen");
+  ellipse(150,1,30,30);
+  //atributen2
+  
   // kogel
 
   // speler
@@ -160,7 +189,7 @@ function draw() {
     console.log("game over");
     textSize(50);
     fill("white");
-    text("GAME OVER, druk spatie om het spel opieuw te starten", 100, 100);
+    text("GAME OVER, press space to play the GAME again", 40, 300);
     if (keyIsDown(32)) { // spatie
       spelStatus = UITLEG;
     }
@@ -172,7 +201,7 @@ function draw() {
     fill("blue");
     rect(0, 0, 1280, 720);
     fill("white");
-    text("uitleg: druk op enter om de GAME te starten", 100, 100);
+    text("Press RETURN to start the GAME", 300, 300);
     if (keyIsDown(13)) {// enter
       spelerX = 400;
       spelStatus = SPELEN;
