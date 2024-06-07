@@ -80,7 +80,7 @@ var beweegAlles = function() {
   // kogelspeler
 
   if (kogelspelerVliegt === false &&
-      keyIsDown(49)) { // start schieten met toets 1
+      keyIsDown(16)) { // start schieten met toets 1
      kogelspelerVliegt = true;
      kogelspelerX = spelerX;
      kogelspelerY = spelerY;
