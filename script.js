@@ -32,11 +32,17 @@ const DOWNV = 90
 
 var spelerX = 600; // x-positie van speler
 var spelerY = 600; // y-positie van speler
+var kogelspelerX = 400; // x-positie van kogel
+var kogelspelerY = 600; // y-positie van kogel
+var kogelspelerVliegt = false; // is de kogel vliegt of niet
 var health = 10;  // health van speler
 var punten = 0; // punten van speler
 
 var vijandX = 600 // x-positie van vijand
 var vijandY = 600 // y-positie van vijand
+var kogelvijandX = 575; // x-positie van kogel
+var kogelvijandY = 575; // y-positie van kogel
+var kogelvijandVliegt = false; // is de kogel vliegt of niet
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -71,9 +77,39 @@ var beweegAlles = function() {
   if (keyIsDown(DOWNV)) {
     vijandY = vijandY + 1;
   }
-  // kogel
-};
+  // kogelspeler
 
+  if (kogelspelerVliegt === false &&
+      keyIsDown(49)) { // start schieten met toets 1
+     kogelspelerVliegt = true;
+     kogelspelerX = spelerX;
+     kogelspelerY = spelerY;
+  }
+  if (kogelspelerVliegt === true) { // kogel vliegt
+   kogelspelerY = kogelspelerY - 1;
+  }
+  if (kogelspelerVliegt === true &&
+      kogelspelerY < 0) { // kogel verdwijnt
+    kogelspelerVliegt = false;
+      }
+
+  // kogelvijand
+
+if (kogelvijandVliegt === false &&
+      keyIsDown(50)) { // start schieten met toets 2
+     kogelvijandVliegt = true;
+     kogelvijandX = vijandX;
+     kogelvijandY = vijandY;
+  }
+  if (kogelvijandVliegt === true) { // kogel vliegt
+   kogelvijandY = kogelvijandY - 1;
+  }
+  if (kogelvijandVliegt === true &&
+      kogelvijandY < 0) { // kogel verdwijnt
+    kogelvijandVliegt = false;
+      }
+
+};
 /**
  * Checkt botsingen
  * Verwijdert neergeschoten dingen
@@ -103,6 +139,9 @@ var tekenAlles = function() {
   // achtergrond
   fill("blue")
   rect(0, 0, 1280, 720);
+  // kogelvijand
+  fill("red");
+  ellipse(kogelvijandX, kogelvijandY, 20, 20);
   // vijand
   fill("red");
   ellipse(vijandX - 25, vijandY - 25, 50, 50);
@@ -116,6 +155,7 @@ var tekenAlles = function() {
   fill("lightgray");
   ellipse(60,60,40,40);
   fill("darkgray");
+  
   ellipse(240,100,100,100);
   fill("lightgray");
   ellipse(240,100,90,90);
@@ -152,8 +192,9 @@ var tekenAlles = function() {
   ellipse(1050,440,110,5);
   fill("lightpink");
   ellipse(950,460,110,5);
-  // kogel
-
+  // kogelspeler
+  fill("white");
+  ellipse(kogelspelerX, kogelspelerY, 20, 20);
   // speler
   fill("darkorange");
   rect(spelerX - 25, spelerY - 25, 50, 50);
@@ -204,7 +245,7 @@ function draw() {
     console.log("game over");
     textSize(50);
     fill("white");
-    text("GAME OVER, press space to play the GAME again", 40, 300);
+    text("GAME OVER, press SPACE to play the GAME again", 40, 300);
     if (keyIsDown(32)) { // spatie
       spelStatus = UITLEG;
     }
