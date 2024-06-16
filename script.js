@@ -18,8 +18,9 @@
 
 const SPELEN = 1;
 const GAMEOVER = 2;
-const UITLEG = 3;
-var spelStatus = UITLEG;
+const START = 3;
+const UITLEG = 4;
+var spelStatus = START;
 
 const KEY_LEFT = 37
 const KEY_RIGHT = 39
@@ -275,7 +276,7 @@ function draw() {
     if (health < 0) {
       spelStatus = GAMEOVER;
     }
-
+       console.log("spelen")
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
@@ -284,20 +285,39 @@ function draw() {
     fill("white");
     text("GAME OVER, press SPACE to play the GAME again", 40, 300);
     if (keyIsDown(32)) { // spatie
-      spelStatus = UITLEG;
+      spelStatus = START;
     }
   }
   if (spelStatus === UITLEG) {
-    // teken uitleg scherm
+    //teken uitleg scherm
     console.log("uitleg");
     textSize(50);
     fill("blue");
     rect(0, 0, 1280, 720);
     fill("white");
-    text("Press RETURN to start the GAME", 300, 300);
-    if (keyIsDown(13)) {// enter
+    textFont("italian");
+    text("WELCOME TO THE GAME", 0, 300);
+    text("This is a two player game", 0, 350);
+    text("The goal of the game for the player is to stay alive", 0, 400);
+    text("The aim of the game for the enemy is to shoot the player", 0, 450);
+    text("Press RETURN to start the GAME", 0, 500);
+    if (keyIsDown(13)) {//enter
+    spelerX = 400;
+    spelStatus = SPELEN;
+    }
+  }
+  if (spelStatus === START) {
+    // teken start scherm
+    console.log("uitleg");
+    textSize(50);
+    fill("blue");
+    rect(0, 0, 1280, 720);
+    fill("white");
+    textFont("italian");
+    text("PLAYER VS ENEMY", 300, 300);
+    if (keyIsDown(20)) {// caps lock
       spelerX = 400;
-      spelStatus = SPELEN;
+      spelStatus = UITLEG;
     }
   }
 }
