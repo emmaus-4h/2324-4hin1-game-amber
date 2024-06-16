@@ -92,6 +92,18 @@ var beweegAlles = function() {
       kogelspelerY < 0) { // kogel verdwijnt
     kogelspelerVliegt = false;
       }
+  if (keyIsDown(KEY_LEFT)) {
+    kogelspelerX = kogelspelerX - 1;
+  }
+  if (keyIsDown(KEY_RIGHT)) {
+    kogelspelerX = kogelspelerX + 1;
+  }
+  if (keyIsDown(KEY_UP)) {
+    kogelspelerY = kogelspelerY - 1;
+  }
+  if (keyIsDown(KEY_DOWN)) {
+    kogelspelerY = kogelspelerY + 1;
+  }
 
   // kogelvijand
 
@@ -108,7 +120,18 @@ if (kogelvijandVliegt === false &&
       kogelvijandY < 0) { // kogel verdwijnt
     kogelvijandVliegt = false;
       }
-
+if (keyIsDown(LEFTV)) {
+    kogelvijandX = kogelvijandX - 1;
+  }
+  if (keyIsDown(RIGHTV)) {
+    kogelvijandX = kogelvijandX + 1;
+  }
+  if (keyIsDown(UPV)) {
+    kogelvijandY = kogelvijandY - 1;
+  }
+  if (keyIsDown(DOWNV)) {
+    kogelvijandY = kogelvijandY + 1;
+  }
 };
 /**
  * Checkt botsingen
@@ -125,7 +148,21 @@ var verwerkBotsing = function() {
     health = health - 1;
   }
   // botsing kogel tegen vijand
-
+if (spelerX - kogelvijandX < 50 &&
+    spelerX - kogelvijandX > -50 &&
+    spelerY - kogelvijandY < 50 &&
+    spelerY - kogelvijandY > -50) {
+    console.log("Botsing");
+    health = health - 1;
+  }
+  // botsing kogel tegen speler
+  if (vijandX - kogelspelerX < 27 &&
+    vijandX - kogelspelerX > -27 &&
+    vijandY - kogelspelerY < 27 &&
+    vijandY - kogelspelerY > -27) {
+    console.log("Botsing");
+    health = health - 1;
+  }
   // update punten en health
      punten = punten + 0.02;
   
