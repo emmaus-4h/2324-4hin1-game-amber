@@ -31,7 +31,7 @@ const RIGHTV = 83
 const UPV = 87
 const DOWNV = 90
 
-var spelerX = 600; // x-positie van speler
+var spelerX = 400; // x-positie van speler
 var spelerY = 600; // y-positie van speler
 var kogelspelerX = 400; // x-positie van kogel
 var kogelspelerY = 600; // y-positie van kogel
@@ -48,10 +48,27 @@ var kogelvijandVliegt = false; // is de kogel vliegt of niet
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
 
+
+var initGame = function () {
+  spelerX = 400;
+
+  spelerY = 600; // y-positie van speler
+  kogelspelerX = 400; // x-positie van kogel
+  kogelspelerY = 600; // y-positie van kogel
+  kogelspelerVliegt = false; // is de kogel vliegt of niet
+  health = 10;  // health van speler
+  punten = 0; // punten van speler
+
+  vijandX = 600 // x-positie van vijand
+  vijandY = 600 // y-positie van vijand
+  kogelvijandX = 575; // x-positie van kogel
+  kogelvijandY = 575; // y-positie van kogel
+  kogelvijandVliegt = false; // is de kogel vliegt of niet
+}
 /**
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
-var beweegAlles = function() {
+var beweegAlles = function () {
   // speler
   if (keyIsDown(KEY_LEFT)) {
     spelerX = spelerX - 1;
@@ -81,18 +98,18 @@ var beweegAlles = function() {
   // kogelspeler
 
   if (kogelspelerVliegt === false &&
-      keyIsDown(16)) { // start schieten met toets 1
-     kogelspelerVliegt = true;
-     kogelspelerX = spelerX;
-     kogelspelerY = spelerY;
+    keyIsDown(16)) { // start schieten met toets 1
+    kogelspelerVliegt = true;
+    kogelspelerX = spelerX;
+    kogelspelerY = spelerY;
   }
   if (kogelspelerVliegt === true) { // kogel vliegt
-   kogelspelerY = kogelspelerY - 1;
+    kogelspelerY = kogelspelerY - 1;
   }
   if (kogelspelerVliegt === true &&
-      kogelspelerY < 0) { // kogel verdwijnt
+    kogelspelerY < 0) { // kogel verdwijnt
     kogelspelerVliegt = false;
-      }
+  }
   if (keyIsDown(KEY_LEFT)) {
     kogelspelerX = kogelspelerX - 1;
   }
@@ -108,20 +125,20 @@ var beweegAlles = function() {
 
   // kogelvijand
 
-if (kogelvijandVliegt === false &&
-      keyIsDown(50)) { // start schieten met toets 2
-     kogelvijandVliegt = true;
-     kogelvijandX = vijandX;
-     kogelvijandY = vijandY;
+  if (kogelvijandVliegt === false &&
+    keyIsDown(50)) { // start schieten met toets 2
+    kogelvijandVliegt = true;
+    kogelvijandX = vijandX;
+    kogelvijandY = vijandY;
   }
   if (kogelvijandVliegt === true) { // kogel vliegt
-   kogelvijandY = kogelvijandY - 1;
+    kogelvijandY = kogelvijandY - 1;
   }
   if (kogelvijandVliegt === true &&
-      kogelvijandY < 0) { // kogel verdwijnt
+    kogelvijandY < 0) { // kogel verdwijnt
     kogelvijandVliegt = false;
-      }
-if (keyIsDown(LEFTV)) {
+  }
+  if (keyIsDown(LEFTV)) {
     kogelvijandX = kogelvijandX - 1;
   }
   if (keyIsDown(RIGHTV)) {
@@ -139,7 +156,7 @@ if (keyIsDown(LEFTV)) {
  * Verwijdert neergeschoten dingen
  * Updatet globale variabelen punten en health
  */
-var verwerkBotsing = function() {
+var verwerkBotsing = function () {
   // botsing speler tegen vijand
   if (spelerX - vijandX < 50 &&
     spelerX - vijandX > -50 &&
@@ -149,7 +166,7 @@ var verwerkBotsing = function() {
     health = health - 1;
   }
   // botsing kogel tegen vijand
-if (spelerX - kogelvijandX < 50 &&
+  if (spelerX - kogelvijandX < 50 &&
     spelerX - kogelvijandX > -50 &&
     spelerY - kogelvijandY < 50 &&
     spelerY - kogelvijandY > -50) {
@@ -165,15 +182,15 @@ if (spelerX - kogelvijandX < 50 &&
     health = health - 1;
   }
   // update punten en health
-     punten = punten + 0.02;
-  
+  punten = punten + 0.02;
+
 
 };
 
 /**
  * Tekent spelscherm
  */
-var tekenAlles = function() {
+var tekenAlles = function () {
   // achtergrond
   fill("blue")
   rect(0, 0, 1280, 720);
@@ -187,49 +204,49 @@ var tekenAlles = function() {
   ellipse(vijandX - 25, vijandY - 25, 100, 10);
   // atributen1
   fill("lightgray");
-  ellipse(50,50,500,500);
+  ellipse(50, 50, 500, 500);
   fill("darkgray");
-  ellipse(60,60,50,50);
+  ellipse(60, 60, 50, 50);
   fill("lightgray");
-  ellipse(60,60,40,40);
+  ellipse(60, 60, 40, 40);
   fill("darkgray");
-  
-  ellipse(240,100,100,100);
+
+  ellipse(240, 100, 100, 100);
   fill("lightgray");
-  ellipse(240,100,90,90);
+  ellipse(240, 100, 90, 90);
   fill("darkgray");
-  ellipse(130,180,30,30);
+  ellipse(130, 180, 30, 30);
   fill("lightgray");
-  ellipse(130,180,20,20);
+  ellipse(130, 180, 20, 20);
   fill("darkgray");
-  ellipse(5,140,30,30);
+  ellipse(5, 140, 30, 30);
   fill("lightgray");
-  ellipse(5,140,20,20);
+  ellipse(5, 140, 20, 20);
   fill("darkgray");
-  ellipse(50,250,80,80);
+  ellipse(50, 250, 80, 80);
   fill("lightgray");
-  ellipse(50,250,70,70);
+  ellipse(50, 250, 70, 70);
   fill("darkgray");
-  ellipse(150,1,40,40);
+  ellipse(150, 1, 40, 40);
   fill("lightgray");
-  ellipse(150,1,30,30);
+  ellipse(150, 1, 30, 30);
   //atributen2
   fill("purple");
-  ellipse(1000,500,300,300);
+  ellipse(1000, 500, 300, 300);
   fill("lightpink");
-  ellipse(1000,500,300,5);
+  ellipse(1000, 500, 300, 5);
   fill("lightpink");
-  ellipse(1000,600,210,5);
+  ellipse(1000, 600, 210, 5);
   fill("lightpink");
-  ellipse(1000,400,210,5);
+  ellipse(1000, 400, 210, 5);
   fill("lightpink");
-  ellipse(1050,560,110,5);
+  ellipse(1050, 560, 110, 5);
   fill("lightpink");
-  ellipse(950,540,110,5);
+  ellipse(950, 540, 110, 5);
   fill("lightpink");
-  ellipse(1050,440,110,5);
+  ellipse(1050, 440, 110, 5);
   fill("lightpink");
-  ellipse(950,460,110,5);
+  ellipse(950, 460, 110, 5);
   // kogelspeler
   fill("white");
   ellipse(kogelspelerX, kogelspelerY, 20, 20);
@@ -276,7 +293,7 @@ function draw() {
     if (health < 0) {
       spelStatus = GAMEOVER;
     }
-       console.log("spelen")
+    console.log("spelen")
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
@@ -302,8 +319,8 @@ function draw() {
     text("The aim of the game for the enemy is to shoot the player", 0, 450);
     text("Press RETURN to start the GAME", 0, 500);
     if (keyIsDown(13)) {//enter
-    spelerX = 400;
-    spelStatus = SPELEN;
+      spelerX = 400;
+      spelStatus = SPELEN;
     }
   }
   if (spelStatus === START) {
@@ -316,7 +333,7 @@ function draw() {
     textFont("italian");
     text("PLAYER VS ENEMY", 300, 300);
     if (keyIsDown(20)) {// caps lock
-      spelerX = 400;
+      initGame();
       spelStatus = UITLEG;
     }
   }
