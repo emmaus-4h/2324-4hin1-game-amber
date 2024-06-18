@@ -332,7 +332,7 @@ function draw() {
     fill("white");
     textFont("italian");
     text("PLAYER VS ENEMY", 300, 300);
-    if (keyIsDown(20)) {// caps lock
+    if (keyIsDown(16)) {// shift
       initGame();
       spelStatus = UITLEG;
     }
