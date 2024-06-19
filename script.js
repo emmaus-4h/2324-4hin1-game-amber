@@ -317,7 +317,11 @@ function draw() {
     text("This is a two player game", 0, 350);
     text("The goal of the game for the player is to stay alive", 0, 400);
     text("The aim of the game for the enemy is to shoot the player", 0, 450);
+    text("Use the arrow keys to move the player", 0, 500);
+    text("use A, S, W, Z to move the enemy", 0, 550);
     text("Press RETURN to start the GAME", 0, 500);
+    text("Use the most right shift to shoot as player", 0, 550);
+text("use 2 to shoot as a enemy", 0, 600);
     if (keyIsDown(13)) {//enter
       spelerX = 400;
       spelStatus = SPELEN;
@@ -332,6 +336,7 @@ function draw() {
     fill("white");
     textFont("italian");
     text("PLAYER VS ENEMY", 300, 300);
+    text("Press SHIFT to continue", 300, 350);
     if (keyIsDown(16)) {// shift
       initGame();
       spelStatus = UITLEG;
